@@ -2,7 +2,8 @@
  * app.component
  */
 
-import { Component, OnInit } from "@angular/core";
+import { Component, OnInit, ViewContainerRef } from '@angular/core';
+import { ProcessBarService } from './process/process-bar.service';
 
 @Component({
     selector: 'yk-app',
@@ -12,9 +13,15 @@ import { Component, OnInit } from "@angular/core";
 
 export class AppComponent implements OnInit {
 
-    constructor() {
+    constructor( private vRef: ViewContainerRef,
+                 private processBarService: ProcessBarService ) {
     }
 
-    ngOnInit(): void {
+    public ngOnInit(): void {
+        this.processBarService.setRootViewContainerRef(this.vRef);
+    }
+
+    public add(): void {
+        this.processBarService.start();
     }
 }
