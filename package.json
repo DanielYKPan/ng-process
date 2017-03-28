@@ -78,6 +78,7 @@
     "sass-loader": "^4.0.2",
     "style-loader": "^0.13.1",
     "to-string-loader": "^1.1.5",
+    "tslint": "^4.5.1",
     "typescript": "~2.2.1",
     "webpack": "2.2.0",
     "webpack-dev-server": "2.4.1",
