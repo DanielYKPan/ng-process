@@ -3,8 +3,9 @@
  */
 
 import {
-    ApplicationRef, ComponentFactoryResolver, ComponentRef, Injectable, ReflectiveInjector,
-    ViewContainerRef
+    ApplicationRef, ComponentFactoryResolver, ComponentRef, Injectable,
+    ReflectiveInjector,
+    ViewContainerRef,
 } from '@angular/core';
 import { ProcessBarComponent } from './process-bar.component';
 
@@ -12,7 +13,6 @@ import { ProcessBarComponent } from './process-bar.component';
 export class ProcessBarService {
 
     private processBar: ComponentRef<any>;
-
     private rootViewContainerRef: ViewContainerRef;
 
     constructor( private componentFactoryResolver: ComponentFactoryResolver,
@@ -25,6 +25,16 @@ export class ProcessBarService {
 
     public start(): void {
         this.set();
+        this.processBar.instance.start();
+    }
+
+    public dispose(): void {
+        if (this.processBar) {
+            this.processBar.destroy();
+            this.processBar = null;
+            return;
+        }
+        return;
     }
 
     private set(): void {
