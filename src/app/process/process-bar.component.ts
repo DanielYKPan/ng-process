@@ -27,7 +27,7 @@ export class ProcessBarComponent implements OnInit, OnDestroy {
                 if (event.type === ProcessBarEventType.VISIBLE) {
                     this.visible = event.value;
                 } else if (event.type === ProcessBarEventType.PROGRESS) {
-                    this.progress = event.value;
+                    this.progress = event.value * 100;
                 }
             }
         );

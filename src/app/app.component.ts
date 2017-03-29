@@ -21,7 +21,11 @@ export class AppComponent implements OnInit {
         this.processBarService.setRootViewContainerRef(this.vRef);
     }
 
-    public add(): void {
+    public start(): void {
         this.processBarService.start();
+    }
+
+    public done(): void {
+        this.processBarService.done();
     }
 }
