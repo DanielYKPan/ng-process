@@ -18,7 +18,7 @@ export class ProcessBarService {
     public events: Observable<ProcessBarEvent> = this.eventSource.asObservable();
     private container: ComponentRef<any>;
     private rootViewContainerRef: ViewContainerRef;
-    private speed: number = 500;
+    private speed: number = 200;
     private intervalId: any;
 
     /* Property visible */
@@ -84,8 +84,8 @@ export class ProcessBarService {
                 // Drop to 0
                 this.Progress = 0;
                 this.dispose();
-            }, 250);
-        }, 250);
+            }, 600);
+        }, 400);
     }
 
     private clear(): void {
