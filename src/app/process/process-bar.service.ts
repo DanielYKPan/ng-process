@@ -3,12 +3,13 @@
  */
 
 import {
-    ApplicationRef, ComponentFactoryResolver, ComponentRef, Injectable,
+    ApplicationRef, ComponentFactoryResolver, ComponentRef, Injectable, Optional,
     ReflectiveInjector, ViewContainerRef,
 } from '@angular/core';
 import { ProcessContainerComponent } from './process-container.component';
 import { ProcessBarEvent, ProcessBarEventType } from './process-bar-event.class';
 import { Observable, Subject } from 'rxjs';
+import { ProcessBarOptions } from './process-bar-options.class';
 
 @Injectable()
 export class ProcessBarService {
@@ -19,6 +20,7 @@ export class ProcessBarService {
     private rootViewContainerRef: ViewContainerRef;
     private speed: number = 200;
     private intervalId: any;
+    private options: any = {};
 
     /* Property visible */
     private visible: boolean = false;
@@ -52,7 +54,11 @@ export class ProcessBarService {
     }
 
     constructor( private componentFactoryResolver: ComponentFactoryResolver,
-                 private appRef: ApplicationRef ) {
+                 private appRef: ApplicationRef,
+                 @Optional() options: ProcessBarOptions ) {
+        if (options) {
+            Object.assign(this.options, options);
+        }
     }
 
     public setRootViewContainerRef( vRef: ViewContainerRef ) {
@@ -139,10 +145,15 @@ export class ProcessBarService {
                 }
             }
 
+            // get options providers
+            let providers = ReflectiveInjector.resolve([
+                {provide: ProcessBarOptions, useValue: <ProcessBarOptions> this.options}
+            ]);
+
             let processBarFactory =
                 this.componentFactoryResolver.resolveComponentFactory(ProcessContainerComponent);
             let childInjector =
-                ReflectiveInjector.fromResolvedProviders([],
+                ReflectiveInjector.fromResolvedProviders(providers,
                     this.rootViewContainerRef.parentInjector);
 
             this.container =

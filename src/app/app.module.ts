@@ -14,7 +14,7 @@ import '../sass/main.scss';
     imports: [
         BrowserModule,
         FormsModule,
-        ProcessBarModule,
+        ProcessBarModule.forRoot({}),
     ],
     declarations: [
         AppComponent,
