@@ -9,8 +9,11 @@ export class ProcessBarOptions {
 
     public color?: string = 'firebrick';
     public height?: number = 2;
+    public showSpinIcon?: boolean = true;
 
-    constructor( options: Object ) {
-        Object.assign(this, options);
+    constructor( options?: Object ) {
+        if (options) {
+            Object.assign(this, options);
+        }
     }
 }

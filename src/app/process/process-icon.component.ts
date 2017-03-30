@@ -16,6 +16,7 @@ import { ProcessBarOptions } from './process-bar-options.class';
 export class ProcessIconComponent implements OnInit, OnDestroy {
 
     private visible: boolean = true;
+    private showSpinIcon: boolean = true;
     private color: string = 'firebrick';
     private sub: Subscription;
 
@@ -46,7 +47,7 @@ export class ProcessIconComponent implements OnInit, OnDestroy {
         return {
             'border-top-color': this.color,
             'border-left-color': this.color,
-            'opacity': this.visible ? 1 : 0,
+            'opacity': (this.visible && this.showSpinIcon) ? 1 : 0,
         };
     }
 
