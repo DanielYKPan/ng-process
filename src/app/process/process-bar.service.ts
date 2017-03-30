@@ -20,7 +20,7 @@ export class ProcessBarService {
     private rootViewContainerRef: ViewContainerRef;
     private speed: number = 200;
     private intervalId: any;
-    private options: any = {};
+    private options: ProcessBarOptions = new ProcessBarOptions();
 
     /* Property visible */
     private visible: boolean = false;

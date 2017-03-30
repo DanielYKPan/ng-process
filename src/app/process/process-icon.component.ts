@@ -16,15 +16,10 @@ import { ProcessBarOptions } from './process-bar-options.class';
 export class ProcessIconComponent implements OnInit, OnDestroy {
 
     private visible: boolean = true;
-    private showSpinIcon: boolean = true;
-    private color: string = 'firebrick';
     private sub: Subscription;
 
     constructor( private service: ProcessBarService,
-                 @Optional() private options: ProcessBarOptions ) {
-        if (options) {
-            Object.assign(this, options);
-        }
+                 private options: ProcessBarOptions ) {
     }
 
     public ngOnInit() {
@@ -45,9 +40,9 @@ export class ProcessIconComponent implements OnInit, OnDestroy {
 
     public getProcessIconStyles(): any {
         return {
-            'border-top-color': this.color,
-            'border-left-color': this.color,
-            'opacity': (this.visible && this.showSpinIcon) ? 1 : 0,
+            'border-top-color': this.options.color,
+            'border-left-color': this.options.color,
+            'opacity': (this.visible && this.options.showSpinIcon) ? 1 : 0,
         };
     }
 

@@ -15,17 +15,12 @@ import { ProcessBarOptions } from './process-bar-options.class';
 })
 export class ProcessBarComponent implements OnInit, OnDestroy {
 
-    private color: string = 'firebrick';
-    private height: number = 2;
     private progress: number = 0;
     private visible: boolean = true;
     private sub: Subscription;
 
     constructor( private service: ProcessBarService,
-                 @Optional() private options: ProcessBarOptions ) {
-        if (options) {
-            Object.assign(this, options);
-        }
+                 private options: ProcessBarOptions ) {
     }
 
     public ngOnInit() {
@@ -50,10 +45,10 @@ export class ProcessBarComponent implements OnInit, OnDestroy {
     public getProcessBarStyles(): any {
         return {
             'width': this.progress + '%',
-            'height.px': this.height,
+            'height.px': this.options.height,
             'opacity': this.visible ? 1 : 0,
-            'background-color': this.color,
-            'color': this.color
+            'background-color': this.options.color,
+            'color': this.options.color
         };
     }
 }
