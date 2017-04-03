@@ -1,0 +1,24 @@
+.yk-loading-bar-spinner-icon {
+  position: fixed;
+  top: 15px;
+  right: 15px;
+  width: 18px;
+  height: 18px;
+  box-sizing: border-box;
+  border: solid 2px transparent;
+  border-top-color: firebrick;
+  border-left-color: firebrick;
+  border-radius: 50%;
+  opacity: 0;
+  transition: opacity 0.5s ease-in-out;
+  animation: yk-spinning 400ms linear infinite;
+}
+
+@keyframes yk-spinning {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
