@@ -1,7 +1,9 @@
 <div class="yk-loading-page-container">
-    <div class="yk-loading-page-overlay left"></div>
-    <div class="yk-loading-page-overlay right"></div>
-    <div class="yk-loading-page-loader">
+    <div *ngIf="visible"
+         class="yk-loading-page-overlay left" [@flyInOut]="'down'"></div>
+    <div *ngIf="visible"
+         class="yk-loading-page-overlay right" [@flyInOut]="'up'"></div>
+    <div *ngIf="visible" class="yk-loading-page-loader" [@flyInOut]="'show'">
         <div class="yk-loading-page-line"></div>
         <div class="yk-loading-page-line"></div>
         <div class="yk-loading-page-line"></div>

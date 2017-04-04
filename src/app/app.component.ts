@@ -26,7 +26,7 @@ export class AppComponent implements OnInit {
 
         setTimeout(() => {
             this.done();
-        }, 3000);
+        }, 100);
     }
 
     public done(): void {

@@ -11,6 +11,7 @@ import { ProcessContainerComponent } from './process-container.component';
 import { ProcessIconComponent } from './process-icon.component';
 import { ProcessOptions } from './process-options.class';
 import { ProcessPageComponent } from './process-page.component';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 @NgModule({
     declarations: [
@@ -22,6 +23,7 @@ import { ProcessPageComponent } from './process-page.component';
     imports: [
         CommonModule,
         FormsModule,
+        BrowserAnimationsModule,
     ],
     exports: [],
     entryComponents: [ProcessContainerComponent]

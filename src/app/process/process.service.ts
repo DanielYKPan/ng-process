@@ -20,6 +20,8 @@ export class ProcessService {
     private rootViewContainerRef: ViewContainerRef;
     private speed: number = 200;
     private intervalId: any;
+    private visibleTimeoutId: any;
+    private disposeTimeoutId: any;
     private options: ProcessOptions = new ProcessOptions();
 
     /* Property visible */
@@ -45,9 +47,9 @@ export class ProcessService {
 
     set Progress( value: number ) {
         if (value !== undefined && value !== null) {
-            if (value > 0) {
-                this.Visible = true;
-            }
+            /*            if (value > 0) {
+             this.Visible = true;
+             }*/
             this.progress = value;
             this.emitEvent(new ProcessEvent(ProcessEventType.PROGRESS, this.progress));
         }
@@ -70,30 +72,51 @@ export class ProcessService {
         this.clear();
         this.Visible = true;
         if (this.options.type === 'bar') {
-            this.Progress = 0;
-            this.intervalId = setInterval(() => {
-                // Increment the progress and update view component
-                this.trickle();
-                // If the progress is 100% - call complete
-                if (this.Progress === 100) {
-                    this.done();
-                }
-            }, this.speed);
+            this.startBarProcess();
         }
     }
 
     public done() {
-        this.Progress = 100;
         this.clear();
-        setTimeout(() => {
+        if (this.options.type === 'bar') {
+            this.doneBarProcess();
+        } else if (this.options.type === 'page') {
+            this.donePageProcess();
+        }
+    }
+
+    private startBarProcess(): void {
+        this.Progress = 0;
+        this.intervalId = setInterval(() => {
+            // Increment the progress and update view component
+            this.trickle();
+            // If the progress is 100% - call complete
+            if (this.Progress === 100) {
+                this.done();
+            }
+        }, this.speed);
+    }
+
+    private doneBarProcess(): void {
+        this.Progress = 100;
+        this.visibleTimeoutId = setTimeout(() => {
             // Hide it away
             this.Visible = false;
-            setTimeout(() => {
+            this.disposeTimeoutId = setTimeout(() => {
                 // Drop to 0
                 this.Progress = 0;
                 this.dispose();
             }, 600);
         }, 250);
+    }
+
+    private donePageProcess(): void {
+        this.visibleTimeoutId = setTimeout(() => {
+            this.Visible = false;
+            this.disposeTimeoutId = setTimeout(() => {
+                this.dispose();
+            }, 900);
+        }, 2000);
     }
 
     private trickle( amount?: number ): void {
@@ -122,6 +145,14 @@ export class ProcessService {
         if (this.intervalId) {
             clearInterval(this.intervalId);
             this.intervalId = null;
+        }
+        if (this.visibleTimeoutId) {
+            clearTimeout(this.visibleTimeoutId);
+            this.visibleTimeoutId = null;
+        }
+        if (this.disposeTimeoutId) {
+            clearTimeout(this.disposeTimeoutId);
+            this.disposeTimeoutId = null;
         }
     }
 
