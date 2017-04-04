@@ -1,6 +1,6 @@
 {
-  "name": "ng-yk-process",
-  "version": "1.0.0-alpha",
+  "name": "ng-process-demo",
+  "version": "1.0.0",
   "description": "Angular Process Loader Component",
   "keywords": [
     "Angular",
@@ -12,7 +12,7 @@
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "https://github.com/DanielYKPan/ng-yk-process.git"
+    "url": "https://github.com/DanielYKPan/ng-process.git"
   },
   "scripts": {
     "server:dev": "webpack-dev-server --config config/webpack.dev.js --open --progress --profile --watch --content-base src/",
@@ -34,6 +34,7 @@
     "@angular/router": "~4.0.0",
     "core-js": "^2.4.1",
     "rxjs": "5.0.2",
+    "web-animations-js": "^2.2.2",
     "zone.js": "^0.8.4"
   },
   "devDependencies": {

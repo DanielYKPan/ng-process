@@ -2,7 +2,13 @@
  * app.component
  */
 
-import { Component, OnInit } from "@angular/core";
+import { Component, OnDestroy, OnInit, ViewContainerRef } from "@angular/core";
+import {
+    NavigationCancel, NavigationEnd, NavigationError, NavigationStart,
+    Router
+} from '@angular/router';
+import { ProcessService } from '../../npmdist';
+import { Subscription } from 'rxjs/Rx';
 
 @Component({
     selector: 'yk-app',
@@ -10,11 +16,33 @@ import { Component, OnInit } from "@angular/core";
     styleUrls: ['./app.component.scss']
 })
 
-export class AppComponent implements OnInit {
+export class AppComponent implements OnInit, OnDestroy {
 
-    constructor() {
+    private sub: Subscription;
+
+    constructor( private router: Router,
+                 private vRef: ViewContainerRef,
+                 private service: ProcessService ) {
     }
 
-    ngOnInit(): void {
+    public ngOnInit(): void {
+        this.service.setRootViewContainerRef(this.vRef);
+        this.sub = this.router.events.subscribe(event => {
+            if (event instanceof NavigationStart) {
+                this.service.start();
+            } else if (event instanceof NavigationEnd ||
+                event instanceof NavigationCancel ||
+                event instanceof NavigationError) {
+                this.service.done();
+            }
+        }, ( error: any ) => {
+            this.service.done();
+        });
+    }
+
+    public ngOnDestroy(): void {
+        if (this.sub) {
+            this.sub.unsubscribe();
+        }
     }
 }

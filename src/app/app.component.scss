@@ -44,3 +44,19 @@ main {
 .demo {
   width: 100%;
 }
+
+.nav-links {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  width: 100%;
+
+  .link {
+    @include type-setting(2);
+    color: #2185D0;
+
+    &:hover {
+      color: #195e93;
+    }
+  }
+}
