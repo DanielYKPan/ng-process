@@ -1,0 +1,100 @@
+$light-dark: hsla(0, 0%, 0%, 1);
+
+.yk-loading-page-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100vw;
+  height: 100vh;
+}
+
+.yk-loading-page-overlay {
+  position: fixed;
+  top: 0;
+  height: 100vh;
+  display: inline-block;
+  background-color: $light-dark;
+  z-index: 999999;
+  outline: transparent solid 1px;
+
+
+  &.left {
+    width: 76vw;
+    left: -25vw;
+    transform: skew(-10deg)  translateZ(0);
+  }
+
+  &.right {
+    right: -25vw;
+    width: 76vw;
+    transform: skew(-10deg) translateZ(0);
+  }
+}
+
+
+.yk-loading-page-loader {
+  z-index: 99999999;
+}
+
+.yk-loading-page-line {
+  animation: expand 1s ease-in-out infinite;
+  border-radius: 10px;
+  display: inline-block;
+  transform-origin: center center;
+  margin: 0 6px;
+  width: 5px;
+  height: 60px;
+}
+
+.yk-loading-page-line:nth-child(1) {
+  background: #DB2828;
+}
+
+.yk-loading-page-line:nth-child(2) {
+  animation-delay: 180ms;
+  background: #F2711C;
+}
+
+.yk-loading-page-line:nth-child(3) {
+  animation-delay: 360ms;
+  background: #FBBD08;
+}
+
+.yk-loading-page-line:nth-child(4) {
+  animation-delay: 540ms;
+  background: #B5CC18;
+}
+
+.yk-loading-page-line:nth-child(5) {
+  animation-delay: 720ms;
+  background: #21BA45;
+}
+
+.yk-loading-page-line:nth-child(6) {
+  animation-delay: 900ms;
+  background: #00B5AD;
+}
+
+.yk-loading-page-line:nth-child(7) {
+  animation-delay: 1080ms;
+  background: #2185D0;
+}
+
+.yk-loading-page-line:nth-child(8) {
+  animation-delay: 1260ms;
+  background: #6435C9;
+}
+
+.yk-loading-page-line:nth-child(9) {
+  animation-delay: 1440ms;
+  background: #A333C8;
+}
+
+@keyframes expand {
+  0% {
+    transform: scale(1);
+  }
+  25% {
+    transform: scale(2);
+  }
+}

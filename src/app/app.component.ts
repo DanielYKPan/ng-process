@@ -23,6 +23,10 @@ export class AppComponent implements OnInit {
 
     public start(): void {
         this.processService.start();
+
+        setTimeout(() => {
+            this.done();
+        }, 3000);
     }
 
     public done(): void {

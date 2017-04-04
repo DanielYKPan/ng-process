@@ -10,12 +10,14 @@ import { ProcessService } from './process.service';
 import { ProcessContainerComponent } from './process-container.component';
 import { ProcessIconComponent } from './process-icon.component';
 import { ProcessOptions } from './process-options.class';
+import { ProcessPageComponent } from './process-page.component';
 
 @NgModule({
     declarations: [
         ProcessContainerComponent,
         ProcessBarComponent,
         ProcessIconComponent,
+        ProcessPageComponent,
     ],
     imports: [
         CommonModule,
