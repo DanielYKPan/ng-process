@@ -1,3 +1,9 @@
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
 .yk-loading-bar-spinner-icon {
   position: fixed;
   top: 15px;

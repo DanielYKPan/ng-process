@@ -1,4 +1,9 @@
 <div class="yk-loading-container">
-    <app-process-bar></app-process-bar>
-    <app-process-icon></app-process-icon>
+    <div *ngIf="processType === 'bar'" class="yk-loading-bar">
+        <app-process-bar></app-process-bar>
+        <app-process-icon></app-process-icon>
+    </div>
+    <div *ngIf="processType === 'page'" class="yk-loading-page">
+        <app-process-page></app-process-page>
+    </div>
 </div>

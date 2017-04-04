@@ -2,5 +2,5 @@
  * index
  */
 
-
-export { ProcessBarModule } from './lib/process-bar.module';
+export { ProcessModule } from './lib/process.module';
+export { ProcessService } from './lib/process.service';

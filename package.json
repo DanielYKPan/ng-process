@@ -1,5 +1,5 @@
 {
-  "name": "ng-yk-process",
+  "name": "ng-process",
   "version": "1.0.0-alpha",
   "description": "Angular Process Loader Component",
   "keywords": [
@@ -20,7 +20,11 @@
     "test": "karma start",
     "build": "rimraf dist && webpack --config config/webpack.prod.js --progress --profile --bail"
   },
+  "main": "./index.js",
+  "types": "./index.d.ts",
   "dependencies": {
+  },
+  "devDependencies": {
     "@angular/animations": "^4.0.0",
     "@angular/common": "~4.0.0",
     "@angular/compiler": "~4.0.0",
@@ -34,9 +38,7 @@
     "@angular/router": "~4.0.0",
     "core-js": "^2.4.1",
     "rxjs": "5.0.2",
-    "zone.js": "^0.8.4"
-  },
-  "devDependencies": {
+    "zone.js": "^0.8.4",
     "@types/jasmine": "^2.5.36",
     "@types/node": "^7.0.0",
     "@types/selenium-webdriver": "~2.53.39",
