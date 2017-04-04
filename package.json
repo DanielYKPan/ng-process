@@ -33,6 +33,7 @@
     "@angular/platform-server": "^4.0.0",
     "@angular/router": "~4.0.0",
     "core-js": "^2.4.1",
+    "ng-process": "^1.0.0-alpha",
     "rxjs": "5.0.2",
     "web-animations-js": "^2.2.2",
     "zone.js": "^0.8.4"

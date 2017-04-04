@@ -7,8 +7,8 @@ import {
     NavigationCancel, NavigationEnd, NavigationError, NavigationStart,
     Router
 } from '@angular/router';
-import { ProcessService } from '../../npmdist';
 import { Subscription } from 'rxjs/Rx';
+import { ProcessService } from 'ng-process';
 
 @Component({
     selector: 'yk-app',

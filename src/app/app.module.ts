@@ -12,7 +12,7 @@ import { AppRoutingModule } from './app.routes';
 import { HomeComponent } from './pages/home.component';
 import { ContactComponent } from './pages/contact.component';
 import { AboutComponent } from './pages/about.component';
-import { ProcessModule } from '../../npmdist';
+import { ProcessModule } from 'ng-process';
 
 @NgModule({
     imports: [
