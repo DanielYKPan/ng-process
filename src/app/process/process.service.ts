@@ -115,7 +115,7 @@ export class ProcessService {
             this.Visible = false;
             this.disposeTimeoutId = setTimeout(() => {
                 this.dispose();
-            }, 900);
+            }, 700);
         }, 2000);
     }
 
