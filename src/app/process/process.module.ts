@@ -1,15 +1,15 @@
 /**
- * process-bar.module
+ * process.module
  */
 
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { ModuleWithProviders, NgModule } from '@angular/core';
 import { ProcessBarComponent } from './process-bar.component';
-import { ProcessBarService } from './process-bar.service';
+import { ProcessService } from './process.service';
 import { ProcessContainerComponent } from './process-container.component';
 import { ProcessIconComponent } from './process-icon.component';
-import { ProcessBarOptions } from './process-bar-options.class';
+import { ProcessOptions } from './process-options.class';
 
 @NgModule({
     declarations: [
@@ -24,14 +24,14 @@ import { ProcessBarOptions } from './process-bar-options.class';
     exports: [],
     entryComponents: [ProcessContainerComponent]
 })
-export class ProcessBarModule {
-    public static forRoot( config?: ProcessBarOptions ): ModuleWithProviders {
+export class ProcessModule {
+    public static forRoot( config?: ProcessOptions ): ModuleWithProviders {
         return {
-            ngModule: ProcessBarModule,
+            ngModule: ProcessModule,
             providers: config ? [
-                {provide: ProcessBarOptions, useValue: config},
-                ProcessBarService,
-            ] : [ProcessBarService],
+                {provide: ProcessOptions, useValue: config},
+                ProcessService,
+            ] : [ProcessService],
         };
     }
 }

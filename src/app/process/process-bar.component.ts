@@ -2,11 +2,11 @@
  * process-bar.component
  */
 
-import { Component, OnDestroy, OnInit, Optional } from '@angular/core';
-import { ProcessBarService } from './process-bar.service';
+import { Component, OnDestroy, OnInit } from '@angular/core';
+import { ProcessService } from './process.service';
 import { Subscription } from 'rxjs';
-import { ProcessBarEvent, ProcessBarEventType } from './process-bar-event.class';
-import { ProcessBarOptions } from './process-bar-options.class';
+import { ProcessEvent, ProcessEventType } from './process-event.class';
+import { ProcessOptions } from './process-options.class';
 
 @Component({
     selector: 'app-process-bar',
@@ -19,17 +19,16 @@ export class ProcessBarComponent implements OnInit, OnDestroy {
     private visible: boolean = true;
     private sub: Subscription;
 
-    constructor( private service: ProcessBarService,
-                 private options: ProcessBarOptions ) {
+    constructor( private service: ProcessService,
+                 private options: ProcessOptions ) {
     }
 
     public ngOnInit() {
-        console.log();
         this.sub = this.service.events.subscribe(
-            ( event: ProcessBarEvent ) => {
-                if (event.type === ProcessBarEventType.VISIBLE) {
+            ( event: ProcessEvent ) => {
+                if (event.type === ProcessEventType.VISIBLE) {
                     this.visible = event.value;
-                } else if (event.type === ProcessBarEventType.PROGRESS) {
+                } else if (event.type === ProcessEventType.PROGRESS) {
                     this.progress = event.value * 100;
                 }
             }

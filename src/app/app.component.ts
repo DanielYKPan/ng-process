@@ -3,7 +3,7 @@
  */
 
 import { Component, OnInit, ViewContainerRef } from '@angular/core';
-import { ProcessBarService } from './process/process-bar.service';
+import { ProcessService } from './process/process.service';
 
 @Component({
     selector: 'yk-app',
@@ -14,18 +14,18 @@ import { ProcessBarService } from './process/process-bar.service';
 export class AppComponent implements OnInit {
 
     constructor( private vRef: ViewContainerRef,
-                 private processBarService: ProcessBarService ) {
+                 private processService: ProcessService ) {
     }
 
     public ngOnInit(): void {
-        this.processBarService.setRootViewContainerRef(this.vRef);
+        this.processService.setRootViewContainerRef(this.vRef);
     }
 
     public start(): void {
-        this.processBarService.start();
+        this.processService.start();
     }
 
     public done(): void {
-        this.processBarService.done();
+        this.processService.done();
     }
 }

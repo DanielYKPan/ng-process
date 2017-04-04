@@ -6,7 +6,7 @@ import { NgModule } from '@angular/core';
 import { BrowserModule }  from '@angular/platform-browser';
 import { FormsModule } from '@angular/forms';
 import { AppComponent } from './app.component';
-import { ProcessBarModule } from './process/process-bar.module';
+import { ProcessModule } from './process/process.module';
 
 import '../sass/main.scss';
 
@@ -14,7 +14,7 @@ import '../sass/main.scss';
     imports: [
         BrowserModule,
         FormsModule,
-        ProcessBarModule.forRoot({}),
+        ProcessModule.forRoot({}),
     ],
     declarations: [
         AppComponent,

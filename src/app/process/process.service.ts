@@ -1,5 +1,5 @@
 /**
- * process-bar.service
+ * process.service
  */
 
 import {
@@ -7,20 +7,20 @@ import {
     ReflectiveInjector, ViewContainerRef,
 } from '@angular/core';
 import { ProcessContainerComponent } from './process-container.component';
-import { ProcessBarEvent, ProcessBarEventType } from './process-bar-event.class';
+import { ProcessEvent, ProcessEventType } from './process-event.class';
 import { Observable, Subject } from 'rxjs';
-import { ProcessBarOptions } from './process-bar-options.class';
+import { ProcessOptions } from './process-options.class';
 
 @Injectable()
-export class ProcessBarService {
+export class ProcessService {
 
-    public eventSource: Subject<ProcessBarEvent> = new Subject<ProcessBarEvent>();
-    public events: Observable<ProcessBarEvent> = this.eventSource.asObservable();
+    public eventSource: Subject<ProcessEvent> = new Subject<ProcessEvent>();
+    public events: Observable<ProcessEvent> = this.eventSource.asObservable();
     private container: ComponentRef<any>;
     private rootViewContainerRef: ViewContainerRef;
     private speed: number = 200;
     private intervalId: any;
-    private options: ProcessBarOptions = new ProcessBarOptions();
+    private options: ProcessOptions = new ProcessOptions();
 
     /* Property visible */
     private visible: boolean = false;
@@ -32,7 +32,7 @@ export class ProcessBarService {
     set Visible( value: boolean ) {
         if (value !== undefined && value !== null) {
             this.visible = value;
-            this.emitEvent(new ProcessBarEvent(ProcessBarEventType.VISIBLE, this.visible));
+            this.emitEvent(new ProcessEvent(ProcessEventType.VISIBLE, this.visible));
         }
     }
 
@@ -49,13 +49,13 @@ export class ProcessBarService {
                 this.Visible = true;
             }
             this.progress = value;
-            this.emitEvent(new ProcessBarEvent(ProcessBarEventType.PROGRESS, this.progress));
+            this.emitEvent(new ProcessEvent(ProcessEventType.PROGRESS, this.progress));
         }
     }
 
     constructor( private componentFactoryResolver: ComponentFactoryResolver,
                  private appRef: ApplicationRef,
-                 @Optional() options: ProcessBarOptions ) {
+                 @Optional() options: ProcessOptions ) {
         if (options) {
             Object.assign(this.options, options);
         }
@@ -69,14 +69,17 @@ export class ProcessBarService {
         this.set();
         this.clear();
         this.Visible = true;
-        this.intervalId = setInterval(() => {
-            // Increment the progress and update view component
-            this.trickle();
-            // If the progress is 100% - call complete
-            if (this.Progress === 100) {
-                this.done();
-            }
-        }, this.speed);
+        if (this.options.type === 'bar') {
+            this.Progress = 0;
+            this.intervalId = setInterval(() => {
+                // Increment the progress and update view component
+                this.trickle();
+                // If the progress is 100% - call complete
+                if (this.Progress === 100) {
+                    this.done();
+                }
+            }, this.speed);
+        }
     }
 
     public done() {
@@ -147,7 +150,7 @@ export class ProcessBarService {
 
             // get options providers
             let providers = ReflectiveInjector.resolve([
-                {provide: ProcessBarOptions, useValue: <ProcessBarOptions> this.options}
+                {provide: ProcessOptions, useValue: <ProcessOptions> this.options}
             ]);
 
             let processBarFactory =
@@ -162,7 +165,7 @@ export class ProcessBarService {
         }
     }
 
-    private emitEvent( event: ProcessBarEvent ) {
+    private emitEvent( event: ProcessEvent ) {
         if (this.eventSource) {
             // Push up a new event
             this.eventSource.next(event);

@@ -2,11 +2,11 @@
  * process-icon.component
  */
 
-import { Component, OnDestroy, OnInit, Optional } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Subscription } from 'rxjs';
-import { ProcessBarEvent, ProcessBarEventType } from './process-bar-event.class';
-import { ProcessBarService } from './process-bar.service';
-import { ProcessBarOptions } from './process-bar-options.class';
+import { ProcessEvent, ProcessEventType } from './process-event.class';
+import { ProcessService } from './process.service';
+import { ProcessOptions } from './process-options.class';
 
 @Component({
     selector: 'app-process-icon',
@@ -18,14 +18,14 @@ export class ProcessIconComponent implements OnInit, OnDestroy {
     private visible: boolean = true;
     private sub: Subscription;
 
-    constructor( private service: ProcessBarService,
-                 private options: ProcessBarOptions ) {
+    constructor( private service: ProcessService,
+                 private options: ProcessOptions ) {
     }
 
     public ngOnInit() {
         this.sub = this.service.events.subscribe(
-            ( event: ProcessBarEvent ) => {
-                if (event.type === ProcessBarEventType.VISIBLE) {
+            ( event: ProcessEvent ) => {
+                if (event.type === ProcessEventType.VISIBLE) {
                     this.visible = event.value;
                 }
             }
