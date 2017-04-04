@@ -12,7 +12,7 @@
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "https://github.com/DanielYKPan/ng-yk-process.git"
+    "url": "https://github.com/DanielYKPan/ng-process.git"
   },
   "scripts": {
     "server:dev": "webpack-dev-server --config config/webpack.dev.js --open --progress --profile --watch --content-base src/",
