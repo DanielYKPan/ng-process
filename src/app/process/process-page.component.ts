@@ -14,9 +14,19 @@ import { animate, state, style, transition, trigger } from '@angular/animations'
     styleUrls: ['./process-page.component.scss'],
     animations: [
         trigger('flyInOut', [
+            state('show', style({opacity: 1})),
+            transition('void => show', [
+                style({opacity: 0}),
+                animate('500ms 500ms ease')
+            ]),
+            transition('show => void', [
+                animate('200ms ease',
+                    style({opacity: 0}))
+            ]),
+        ]),
+        trigger('flyUpDown', [
             state('up', style({transform: 'translateY(0) skew(-10deg) translateZ(0)'})),
             state('down', style({transform: 'translateY(0) skew(-10deg) translateZ(0)'})),
-            state('show', style({transform: 'opacity: 1'})),
             transition('void => up', [
                 style({transform: 'translateY(150%) skew(-10deg) translateZ(0)'}),
                 animate('650ms ease')
@@ -33,15 +43,7 @@ import { animate, state, style, transition, trigger } from '@angular/animations'
                 animate('650ms 200ms ease',
                     style({transform: 'translateY(-150%) skew(-10deg) translateZ(0)'}))
             ]),
-            transition('void => show', [
-                style({opacity: 0}),
-                animate('200ms 500ms ease')
-            ]),
-            transition('show => void', [
-                animate('200ms ease',
-                    style({opacity: 0}))
-            ]),
-        ])
+        ]),
     ]
 })
 export class ProcessPageComponent implements OnInit, OnDestroy {
@@ -66,5 +68,9 @@ export class ProcessPageComponent implements OnInit, OnDestroy {
         if (this.sub) {
             this.sub.unsubscribe();
         }
+    }
+
+    public animationDone(event: any): void {
+        console.log(event);
     }
 }
